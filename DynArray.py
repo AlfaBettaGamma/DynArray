@@ -54,12 +54,9 @@ class DynArray:
     def delete(self, i):
         if i < 0 or i >= self.count:
             raise IndexError('Index is out of bounds')
-        new_array = self.make_array(self.capacity)
-        if i is not 0:
-            for number in range(i+1,self.count):
-                new_array[number-1] = self.array[number]
-            self.array = new_array
-            self.count -= 1
-            if self.count/self.capacity * 100 < 50:
-                self.resize(int(self.capacity/1.5))
+        for k in range(i, self.count - 1):
+            self.array[k] = self.array[k + 1]
+        self.count -= 1
+        if self.count / self.capacity * 100 < 50:
+            self.resize(int(self.capacity / 1.5))
         # удаляем объект в позиции i

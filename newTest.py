@@ -53,14 +53,9 @@ class DynArray:
 
     def delete(self, i):
         if i < 0 or i >= self.count:
-          raise IndexError('Index is out of bounds')
-        new_array = self.make_array(self.capacity)
-        if i is not 0:
-            for number in range(0, i):
-                new_array[number] = self.array[number]
-        for number in range(i + 1, self.count):
-            new_array[number - 1] = self.array[number]
-        self.array = new_array
+            raise IndexError('Index is out of bounds')
+        for k in range(i, self.count - 1):
+        	self.array[k] = self.array[k + 1]
         self.count -= 1
         if self.count / self.capacity * 100 < 50:
             self.resize(int(self.capacity / 1.5))
@@ -129,9 +124,6 @@ def test5():
 	print('len - ',da.__len__())
 	print('cap - ', da.capacity)
 	da.delete(10)
-	da.delete(7)
-	da.delete(5)
-	da.delete(3)
 	for i in range(da.__len__()):
 	    print('test - ',da[i])
 	print('len - ',da.__len__())
@@ -147,5 +139,5 @@ def test6():
 	da.delete(28)
 
 
-test = test6()
+test = test5()
 test
