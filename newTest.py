@@ -57,7 +57,7 @@ class DynArray:
         for k in range(i, self.count - 1):
         	self.array[k] = self.array[k + 1]
         self.count -= 1
-        if self.count / self.capacity * 100 < 50:
+        if self.count < self.capacity * 0.5:
             self.resize(int(self.capacity / 1.5))
         # удаляем объект в позиции i
 
@@ -124,6 +124,9 @@ def test5():
 	print('len - ',da.__len__())
 	print('cap - ', da.capacity)
 	da.delete(10)
+	da.delete(9)
+	da.delete(8)
+	da.delete(7)
 	for i in range(da.__len__()):
 	    print('test - ',da[i])
 	print('len - ',da.__len__())
