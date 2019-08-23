@@ -59,6 +59,8 @@ class DynArray:
         self.count -= 1
         if self.count < self.capacity * 0.5:
             self.resize(int(self.capacity / 1.5))
+            if self.capacity < 16:
+            	self.capacity = 16
         # удаляем объект в позиции i
 
 
@@ -127,6 +129,12 @@ def test5():
 	da.delete(9)
 	da.delete(8)
 	da.delete(7)
+	da.delete(6)
+	da.delete(5)
+	da.delete(4)
+	da.delete(3)
+	da.delete(2)
+	da.delete(1)
 	for i in range(da.__len__()):
 	    print('test - ',da[i])
 	print('len - ',da.__len__())
